@@ -4,7 +4,13 @@ import { mongooseErrorHandler } from '../Error/mongoose.errorHandler'
 import ApiError from '../Error/ApiError'
 import ErrorResponse from '../Error/errorResponse.interface'
 
-const globalErrorHandler: ErrorRequestHandler = async (error, req, res) => {
+const globalErrorHandler: ErrorRequestHandler = async (
+  error,
+  req,
+  res,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  next,
+) => {
   if (error instanceof Error.ValidationError) {
     const response: ErrorResponse = {
       status: false,

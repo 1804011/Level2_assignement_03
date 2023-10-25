@@ -10,7 +10,7 @@ async function bootstrap() {
       console.log('app listening to port ', config.port)
     })
   } catch (error) {
-    console.log('failed to connect data base')
+    console.log(`failed to connect data base: ${error}`)
   }
 }
 bootstrap()
