@@ -5,7 +5,8 @@ import cors from 'cors'
 const app: Application = express()
 app.use(cors())
 app.use(express.json())
-app.use('/auth', userRouter)
+app.use('/api/v1/auth', userRouter)
+app.use('/api/v1/users', userRouter)
 app.get('/', (req, res) => {
   res.send('Welcome to backend')
 })

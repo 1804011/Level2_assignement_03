@@ -7,4 +7,7 @@ userRouter.post(
   userValidators.validateUser,
   userControllers.createUser,
 )
+userRouter.get('/', userControllers.getAllUsers)
+userRouter.get('/:id', userControllers.getUser)
+userRouter.put('/:id', userControllers.updateUser)
 export default userRouter

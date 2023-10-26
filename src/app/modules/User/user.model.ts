@@ -11,7 +11,10 @@ const userSchema = new mongoose.Schema<IUser>(
     },
     role: {
       type: String,
-      enum: ['seller', 'buyer'],
+      enum: {
+        values: ['seller', 'buyer'],
+        message: '{VALUE} is not supported',
+      },
       required: true,
     },
     password: {
@@ -44,6 +47,7 @@ const userSchema = new mongoose.Schema<IUser>(
   {
     timestamps: true,
     toJSON: { virtuals: true },
+    validateBeforeSave: true,
   },
 )
 userSchema.pre('save', async function (next) {

@@ -6,20 +6,22 @@ const createUser = async (user: IUser): Promise<IUser> => {
   return result
 }
 const getAllUsers = async (): Promise<IUser[]> => {
-  const result = await User.find({})
+  const result = await User.find({}).select('-password')
   return result
 }
 const getUser = async (id: string): Promise<IUser | null> => {
-  const result = await User.findById(id)
+  const result = await User.findById(id).select('-password')
   return result
 }
 const updateUser = async (
   id: string,
   updateData: Partial<IUser>,
 ): Promise<IUser | null> => {
-  const result = await User.findByIdAndUpdate(
-    id,
-    { $set: updateData },
+  const result = await User.findOneAndUpdate(
+    {
+      _id: id,
+    },
+    updateData,
     { new: true },
   )
   return result
