@@ -80,10 +80,17 @@ const getCows: RequestHandler = async (req, res, next) => {
     const result = await cowServices.getCows(
       req.query as QueryOption<SearchTerm>,
     )
+    const { page = 1, limit = 10 } = req.query
+    const metaInfo = {
+      page: Number(page),
+      limit: Number(limit),
+    }
+    console.log(metaInfo)
     const response: SuccessResponse<ICow[]> = {
       success: true,
       statusCode: 200,
       data: result,
+      meta: metaInfo,
       message: 'cows retreived successfully',
     }
     res.status(200).json(response)
