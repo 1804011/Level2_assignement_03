@@ -1,9 +1,9 @@
 import { RequestHandler } from 'express'
 import { cowServices } from './cow.service'
 import SuccessResponse from '../../../Shared/successResponse.interface'
-import ICow from './cow.interface'
+import ICow, { SearchTerm } from './cow.interface'
 import ApiError from '../../../Error/ApiError'
-
+import { QueryOption } from '../../../Shared/shared.interface'
 const createCow: RequestHandler = async (req, res, next) => {
   try {
     const result = await cowServices.createCow(req.body)
@@ -77,7 +77,9 @@ const getCow: RequestHandler = async (req, res, next) => {
 }
 const getCows: RequestHandler = async (req, res, next) => {
   try {
-    const result = await cowServices.getCows()
+    const result = await cowServices.getCows(
+      req.query as QueryOption<SearchTerm>,
+    )
     const response: SuccessResponse<ICow[]> = {
       success: true,
       statusCode: 200,

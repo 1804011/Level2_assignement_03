@@ -29,4 +29,5 @@ interface ICow {
   category: 'Dairy' | 'Beef' | 'Dual Purpose'
   seller: Schema.Types.ObjectId
 }
+export type SearchTerm = 'location' | 'breed' | 'category'
 export default ICow
