@@ -7,7 +7,7 @@ const validationHandler: RequestHandler = (req, res, next) => {
   if (!errors.isEmpty()) {
     const errorMessages: ErrorMessage[] = errors.array().map(error => {
       return {
-        path: error.path, // Use type assertion to ensure 'param' is a string
+        path: '',
         message: error.msg,
       }
     })
