@@ -26,4 +26,8 @@ const deleteCow = async (id: string) => {
   const result = await Cow.findOneAndDelete({ _id: id })
   return result
 }
-export const cowServices = { createCow, getCow, updateCow, deleteCow }
+const getCows = async () => {
+  const result = await Cow.find({})
+  return result
+}
+export const cowServices = { createCow, getCow, updateCow, deleteCow, getCows }
